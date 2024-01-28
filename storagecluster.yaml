@@ -1,0 +1,51 @@
+---
+apiVersion: ocs.openshift.io/v1
+kind: StorageCluster
+metadata:
+  name: ocs-storagecluster
+  namespace: openshift-storage
+spec:
+  resources:
+    mds:
+      Limits: null
+      Requests: null
+    mgr:
+      Limits: null
+      Requests: null
+    mon:
+      Limits: null
+      Requests: null
+    noobaa-core:
+      Limits: null
+      Requests: null
+    noobaa-db:
+      Limits: null
+      Requests: null
+    noobaa-endpoint:
+      limits:
+        cpu: 1
+        memory: 500Mi
+      requests:
+        cpu: 1
+        memory: 500Mi
+    rgw:
+      Limits: null
+      Requests: null
+  storageDeviceSets:
+  - count: 1
+    dataPVCTemplate:
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 256Gi
+        storageClassName: thin-csi-odf
+        volumeMode: Block
+    name: ocs-deviceset
+    placement: {}
+    portable: true
+    replica: 3
+    resources:
+      Limits: null
+      Requests: null

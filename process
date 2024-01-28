@@ -1,0 +1,138 @@
+1.Label nodes
+oc label nodes compute-0 compute-1 compute-2 cluster.ocs.openshift.io/openshift-storage='' --overwrite
+
+2.Disabling default source: redhat-operators
+oc patch operatorhub.config.openshift.io/cluster -p='{"spec":{"sources":[{"disabled":true,"name":"redhat-operators"}]}}' --type=merge
+
+3. Waiting 20 seconds after disabling source
+4. podman run --entrypoint cat quay.io/rhceph-dev/ocs-registry:latest-stable-4.15  /icsp.yaml | oc apply -f -
+
+oc image extract --filter-by-os linux/amd64 --registry-config /home/jenkins/workspace/qe-deploy-ocs-cluster/ocs-ci/data/pull-secret quay.io/rhceph-dev/ocs-registry:4.15.0-91 --confirm --path /icsp.yaml:/home/jenkins/current-cluster-dir/openshift-cluster-dir/icsp-1703156518
+
+5. Checking machineconfigpool status for worker nodes:
+oc  get MachineConfigPool worker -o yaml
+$ oc  get MachineConfigPool master
+
+UPDATED=True READYMACHINECOUNT=3
+
+ READYMACHINECOUNT was 1, but we were waiting for 3
+
+6.Create CatalogSource
+apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: redhat-operators
+  namespace: openshift-marketplace
+  labels:
+      ocs-operator-internal: "true"
+spec:
+  displayName: Openshift Container Storage
+  icon:
+    base64data: ""
+    mediatype: ""
+  image: quay.io/rhceph-dev/ocs-registry:latest-stable-4.14
+  publisher: Red Hat
+  sourceType: grpc
+  priority: 100
+  # If the registry image still have the same tag (latest-stable-4.6, or for stage testing)
+  # we need to have this updateStrategy, otherwise we will not see new pushed content.
+  updateStrategy:
+    registryPoll:
+        interval: 15m
+
+oc -n openshift-marketplace get CatalogSource redhat-operators 
+oc -n openshift-marketplace get CatalogSource  --selector=ocs-operator-internal=true
+
+$ oc -n openshift-marketplace get CatalogSource redhat-operators  -o yaml | grep -i lastObservedState:
+    lastObservedState: READY
+
+
+Catalog source redhat-operators is in state: READY!
+
+7.Creating namespace and operator group. [deploy-with-olm]
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    openshift.io/cluster-monitoring: "true"
+  name: openshift-storage
+spec: {}
+---
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: openshift-storage-operatorgroup
+  namespace: openshift-storage
+spec:
+  creationTimestamp: null
+  targetNamespaces:
+        - openshift-storage
+
+$  oc -n openshift-marketplace get CatalogSource  --selector=ocs-operator-internal=true
+NAME               DISPLAY                       TYPE   PUBLISHER   AGE
+redhat-operators   Openshift Container Storage   grpc   Red Hat     116m
+
+
+
+$ oc get packagemanifest  -n openshift-marketplace --selector=ocs-operator-internal=true  | grep odf-operator
+odf-operator                                   Openshift Container Storage   118m
+
+2.Create subsciption
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: odf-operator
+  namespace: openshift-storage
+spec:
+  channel: stable-4.14
+  name: odf-operator
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+
+ oc -n openshift-storage get Subscription -o yaml
+
+oc get csv  -n openshift-storage -o yaml
+oc get CatalogSource  -n openshift-marketplace --selector=ocs-operator-internal=true -o yaml
+oc get packagemanifest  -n openshift-marketplace --selector=ocs-operator-internal=true -o yaml
+oc get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+ package manifest odf-operator found!
+ Resource odf-operator.v4.15.0-91.stable is in phase: Succeeded!
+  Waiting for a resource(s) of kind packagemanifest identified by name ''
+2023-12-21 13:13:44  11:13:44 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get packagemanifest  -n openshift-marketplace --selector=ocs-operator-internal=true -o yaml
+
+3.Apply storagesystem
+oc apply -f storagesystem_odf.yaml
+
+apiVersion: odf.openshift.io/v1alpha1
+kind: StorageSystem
+metadata:
+  name: ocs-storagecluster-storagesystem
+  namespace: openshift-storage
+spec:
+  kind: storagecluster.ocs.openshift.io/v1
+  name: ocs-storagecluster
+  namespace: openshift-storage
+
+4.Create storageclass_thin-csi-odf
+ oc create -f storageclass_thin-csi-odf.yaml
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "false"
+  name: thin-csi-odf
+parameters:
+  StoragePolicyName: "vSAN Default Storage Policy"
+provisioner: csi.vsphere.vmware.com
+allowVolumeExpansion: true
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer
+
+5.Create storageclustre:
+
+
+
+
+https://ocs4-jenkins-csb-odf-qe.apps.ocp-c1.prod.psi.redhat.com/job/qe-deploy-ocs-cluster/32226/consoleFull

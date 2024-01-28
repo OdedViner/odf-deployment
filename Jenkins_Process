@@ -1,0 +1,415 @@
+2023-12-21 13:02:53  11:02:53 - MainThread - ocs_ci.deployment.deployment - INFO  - Distributed worker nodes for AZ: ['compute-0', 'compute-1', 'compute-2']
+2023-12-21 13:02:53  11:02:53 - MainThread - ocs_ci.deployment.deployment - INFO  - Label nodes: compute-0 compute-1 compute-2 with label: cluster.ocs.openshift.io/openshift-storage=''
+2023-12-21 13:02:53  11:02:53 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc label nodes compute-0 compute-1 compute-2 cluster.ocs.openshift.io/openshift-storage='' --overwrite
+2023-12-21 13:02:54  11:02:54 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Disabling default source: redhat-operators
+2023-12-21 13:02:54  11:02:54 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc patch operatorhub.config.openshift.io/cluster -p='{"spec":{"sources":[{"disabled":true,"name":"redhat-operators"}]}}' --type=merge
+2023-12-21 13:02:54  11:02:54 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Waiting 20 seconds after disabling source: redhat-operators
+2023-12-21 13:03:16  11:03:14 - MainThread - ocs_ci.deployment.deployment - INFO  - Adding CatalogSource
+2023-12-21 13:03:16  11:03:14 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving the authentication config dictionary
+2023-12-21 13:03:16  11:03:14 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving OCS OLM Operator tags (limit 100, page 1)
+2023-12-21 13:03:16  11:03:14 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving OCS OLM Operator tags (limit 100, page 2)
+2023-12-21 13:03:16  11:03:15 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving OCS OLM Operator tags (limit 100, page 3)
+2023-12-21 13:03:16  11:03:15 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving OCS OLM Operator tags (limit 100, page 4)
+2023-12-21 13:03:16  11:03:16 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving OCS OLM Operator tags (limit 100, page 5)
+2023-12-21 13:03:16  11:03:16 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving OCS OLM Operator tags (limit 100, page 6)
+2023-12-21 13:03:17  11:03:16 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving OCS OLM Operator tags (limit 100, page 7)
+2023-12-21 13:03:17  11:03:17 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving OCS OLM Operator tags (limit 100, page 8)
+2023-12-21 13:03:17  11:03:17 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving OCS OLM Operator tags (limit 100, page 9)
+2023-12-21 13:03:18  11:03:18 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving OCS OLM Operator tags (limit 100, page 10)
+2023-12-21 13:03:18  11:03:18 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving OCS OLM Operator tags (limit 100, page 11)
+2023-12-21 13:03:19  11:03:18 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving OCS OLM Operator tags (limit 100, page 12)
+2023-12-21 13:03:19  11:03:19 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving OCS OLM Operator tags (limit 100, page 13)
+2023-12-21 13:03:19  11:03:19 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving OCS OLM Operator tags (limit 100, page 14)
+2023-12-21 13:03:20  11:03:20 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving OCS OLM Operator tags (limit 100, page 15)
+2023-12-21 13:03:20  11:03:20 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving OCS OLM Operator tags (limit 100, page 16)
+2023-12-21 13:03:21  11:03:21 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving OCS OLM Operator tags (limit 100, page 17)
+2023-12-21 13:03:21  11:03:21 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving OCS OLM Operator tags (limit 100, page 18)
+2023-12-21 13:03:22  11:03:21 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving OCS OLM Operator tags (limit 100, page 19)
+2023-12-21 13:03:22  11:03:22 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving OCS OLM Operator tags (limit 100, page 20)
+2023-12-21 13:03:22  11:03:22 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving OCS OLM Operator tags (limit 100, page 21)
+2023-12-21 13:03:23  11:03:23 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving OCS OLM Operator tags (limit 100, page 22)
+2023-12-21 13:03:23  11:03:23 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving OCS OLM Operator tags (limit 100, page 23)
+2023-12-21 13:03:24  11:03:23 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving OCS OLM Operator tags (limit 100, page 24)
+2023-12-21 13:03:24  11:03:24 - MainThread - ocs_ci.utility.utils - INFO  - Retrieving OCS OLM Operator tags (limit 100, page 25)
+2023-12-21 13:03:24  11:03:24 - MainThread - ocs_ci.utility.utils - INFO  - No more tags to retrieve
+2023-12-21 13:03:24  11:03:24 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc image extract --filter-by-os linux/amd64 --registry-config /home/jenkins/workspace/qe-deploy-ocs-cluster/ocs-ci/data/pull-secret quay.io/rhceph-dev/ocs-registry:4.15.0-91 --confirm --path /icsp.yaml:/home/jenkins/current-cluster-dir/openshift-cluster-dir/icsp-1703156518
+2023-12-21 13:03:39  11:03:37 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc apply -f /home/jenkins/current-cluster-dir/openshift-cluster-dir/icsp-1703156518/icsp.yaml
+2023-12-21 13:03:40  11:03:40 - MainThread - ocs_ci.utility.utils - INFO  - Sleeping for 60 sec to start update machineconfigpool status
+2023-12-21 13:04:47  11:04:40 - MainThread - ocs_ci.utility.utils - INFO  - Checking machineconfigpool status for worker nodes
+2023-12-21 13:04:47  11:04:40 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig get MachineConfigPool worker -o yaml
+2023-12-21 13:04:47  11:04:40 - MainThread - ocs_ci.ocs.ocp - INFO  - Waiting for a resource(s) of kind MachineConfigPool identified by name '' using selector None at column name READYMACHINECOUNT to reach desired condition 3
+2023-12-21 13:04:47  11:04:40 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig get MachineConfigPool worker -o yaml
+2023-12-21 13:04:47  11:04:40 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig get MachineConfigPool worker
+2023-12-21 13:04:47  11:04:40 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig get MachineConfigPool worker -o yaml
+2023-12-21 13:04:47  11:04:40 - MainThread - ocs_ci.ocs.ocp - INFO  - status of worker at column READYMACHINECOUNT was 1, but we were waiting for 3
+2023-12-21 13:04:47  11:04:40 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:04:47  11:04:45 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig get MachineConfigPool worker -o yaml
+2023-12-21 13:04:47  11:04:45 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig get MachineConfigPool worker
+2023-12-21 13:04:47  11:04:46 - MainThread - ocs_ci.ocs.ocp - INFO  - status of worker at column READYMACHINECOUNT was 1, but we were waiting for 3
+2023-12-21 13:04:47  11:04:46 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:04:51  11:04:51 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig get MachineConfigPool worker -o yaml
+2023-12-21 13:04:51  11:04:51 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig get MachineConfigPool worker
+2023-12-21 13:04:51  11:04:51 - MainThread - ocs_ci.ocs.ocp - INFO  - status of worker at column READYMACHINECOUNT was 1, but we were waiting for 3
+2023-12-21 13:04:51  11:04:51 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:04:57  11:04:56 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig get MachineConfigPool worker -o yaml
+2023-12-21 13:04:57  11:04:56 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig get MachineConfigPool worker
+2023-12-21 13:04:57  11:04:56 - MainThread - ocs_ci.ocs.ocp - INFO  - status of worker at column READYMACHINECOUNT was 1, but we were waiting for 3
+2023-12-21 13:04:57  11:04:56 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:05:02  11:05:01 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig get MachineConfigPool worker -o yaml
+2023-12-21 13:05:02  11:05:02 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig get MachineConfigPool worker
+2023-12-21 13:05:02  11:05:02 - MainThread - ocs_ci.ocs.ocp - INFO  - status of worker at column READYMACHINECOUNT was 2, but we were waiting for 3
+2023-12-21 13:05:02  11:05:02 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:05:08  11:05:07 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig get MachineConfigPool worker -o yaml
+2023-12-21 13:05:08  11:05:08 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig get MachineConfigPool worker
+2023-12-21 13:05:08  11:05:08 - MainThread - ocs_ci.ocs.ocp - INFO  - status of worker at column READYMACHINECOUNT was 2, but we were waiting for 3
+2023-12-21 13:05:08  11:05:08 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:05:13  11:05:13 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig get MachineConfigPool worker -o yaml
+2023-12-21 13:05:13  11:05:13 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig get MachineConfigPool worker
+2023-12-21 13:05:13  11:05:13 - MainThread - ocs_ci.ocs.ocp - INFO  - status of worker at column READYMACHINECOUNT was 2, but we were waiting for 3
+2023-12-21 13:05:13  11:05:13 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:05:19  11:05:18 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig get MachineConfigPool worker -o yaml
+2023-12-21 13:05:19  11:05:18 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig get MachineConfigPool worker
+2023-12-21 13:05:19  11:05:18 - MainThread - ocs_ci.ocs.ocp - INFO  - status of worker at READYMACHINECOUNT reached condition!
+2023-12-21 13:05:19  11:05:18 - MainThread - ocs_ci.utility.utils - INFO  - Checking machineconfigpool status for master nodes
+2023-12-21 13:05:19  11:05:18 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig get MachineConfigPool master -o yaml
+2023-12-21 13:05:19  11:05:19 - MainThread - ocs_ci.ocs.ocp - INFO  - Waiting for a resource(s) of kind MachineConfigPool identified by name '' using selector None at column name READYMACHINECOUNT to reach desired condition 3
+2023-12-21 13:05:19  11:05:19 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig get MachineConfigPool master -o yaml
+2023-12-21 13:05:19  11:05:19 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig get MachineConfigPool master
+2023-12-21 13:05:19  11:05:19 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig get MachineConfigPool master -o yaml
+2023-12-21 13:05:19  11:05:19 - MainThread - ocs_ci.ocs.ocp - INFO  - status of master at READYMACHINECOUNT reached condition!
+2023-12-21 13:05:19  11:05:19 - MainThread - ocs_ci.utility.templating - INFO  - apiVersion: operators.coreos.com/v1alpha1
+2023-12-21 13:05:19  kind: CatalogSource
+2023-12-21 13:05:19  metadata:
+2023-12-21 13:05:19    labels:
+2023-12-21 13:05:19      ocs-operator-internal: 'true'
+2023-12-21 13:05:19    name: redhat-operators
+2023-12-21 13:05:19    namespace: openshift-marketplace
+2023-12-21 13:05:19  spec:
+2023-12-21 13:05:19    displayName: Openshift Container Storage
+2023-12-21 13:05:19    icon:
+2023-12-21 13:05:19      base64data: ''
+2023-12-21 13:05:19      mediatype: ''
+2023-12-21 13:05:19    image: quay.io/rhceph-dev/ocs-registry:4.15.0-91
+2023-12-21 13:05:19    priority: 100
+2023-12-21 13:05:19    publisher: Red Hat
+2023-12-21 13:05:19    sourceType: grpc
+2023-12-21 13:05:19    updateStrategy:
+2023-12-21 13:05:19      registryPoll:
+2023-12-21 13:05:19        interval: 15m
+2023-12-21 13:05:19  
+2023-12-21 13:05:19  11:05:19 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc apply -f /tmp/catalog_source_manifestboo473wa
+2023-12-21 13:05:23  11:05:22 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:05:23  11:05:23 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Problem while reading state status of catalog source redhat-operators, data: {'apiVersion': 'operators.coreos.com/v1alpha1', 'kind': 'CatalogSource', 'metadata': {'annotations': {'kubectl.kubernetes.io/last-applied-configuration': '{"apiVersion":"operators.coreos.com/v1alpha1","kind":"CatalogSource","metadata":{"annotations":{},"labels":{"ocs-operator-internal":"true"},"name":"redhat-operators","namespace":"openshift-marketplace"},"spec":{"displayName":"Openshift Container Storage","icon":{"base64data":"","mediatype":""},"image":"quay.io/rhceph-dev/ocs-registry:4.15.0-91","priority":100,"publisher":"Red Hat","sourceType":"grpc","updateStrategy":{"registryPoll":{"interval":"15m"}}}}\n'}, 'creationTimestamp': '2023-12-21T11:05:22Z', 'generation': 1, 'labels': {'ocs-operator-internal': 'true'}, 'name': 'redhat-operators', 'namespace': 'openshift-marketplace', 'resourceVersion': '48475', 'uid': '244527f6-651f-4195-ab8f-5a0c3ba2c813'}, 'spec': {'displayName': 'Openshift Container Storage', 'icon': {'base64data': '', 'mediatype': ''}, 'image': 'quay.io/rhceph-dev/ocs-registry:4.15.0-91', 'priority': 100, 'publisher': 'Red Hat', 'sourceType': 'grpc', 'updateStrategy': {'registryPoll': {'interval': '15m'}}}}
+2023-12-21 13:05:23  11:05:23 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:05:28  11:05:28 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:05:28  11:05:28 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:05:28  11:05:28 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:05:33  11:05:33 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:05:33  11:05:33 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:05:33  11:05:33 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:05:38  11:05:38 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:05:38  11:05:38 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:05:38  11:05:38 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:05:44  11:05:43 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:05:44  11:05:43 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:05:44  11:05:43 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:05:49  11:05:48 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:05:49  11:05:49 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:05:49  11:05:49 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:05:54  11:05:54 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:05:54  11:05:54 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:05:54  11:05:54 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:05:59  11:05:59 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:05:59  11:05:59 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:05:59  11:05:59 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:06:05  11:06:04 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:06:05  11:06:04 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:06:05  11:06:04 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:06:10  11:06:09 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:06:10  11:06:09 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:06:10  11:06:09 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:06:15  11:06:14 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:06:15  11:06:14 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:06:15  11:06:14 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:06:20  11:06:19 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:06:20  11:06:20 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:06:20  11:06:20 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:06:25  11:06:25 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:06:25  11:06:25 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:06:25  11:06:25 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:06:31  11:06:30 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:06:31  11:06:30 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:06:31  11:06:30 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:06:36  11:06:35 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:06:36  11:06:35 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:06:36  11:06:35 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:06:41  11:06:40 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:06:41  11:06:40 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:06:41  11:06:40 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:06:46  11:06:45 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:06:46  11:06:46 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:06:46  11:06:46 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:06:52  11:06:51 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:06:52  11:06:51 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:06:52  11:06:51 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:06:57  11:06:56 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:06:57  11:06:56 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:06:57  11:06:56 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:07:02  11:07:01 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:07:02  11:07:01 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:07:02  11:07:01 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:07:07  11:07:06 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:07:07  11:07:06 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:07:07  11:07:06 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:07:12  11:07:11 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:07:12  11:07:12 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:07:12  11:07:12 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:07:17  11:07:17 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:07:17  11:07:17 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:07:17  11:07:17 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:07:22  11:07:22 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:07:22  11:07:22 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:07:22  11:07:22 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:07:28  11:07:27 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:07:28  11:07:28 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:07:28  11:07:28 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:07:33  11:07:33 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:07:33  11:07:33 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:07:33  11:07:33 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:07:38  11:07:38 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:07:38  11:07:38 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:07:38  11:07:38 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:07:43  11:07:43 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:07:43  11:07:43 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:07:43  11:07:43 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:07:49  11:07:48 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:07:49  11:07:49 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:07:49  11:07:49 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:07:54  11:07:54 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:07:54  11:07:54 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:07:54  11:07:54 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:07:59  11:07:59 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:07:59  11:07:59 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:07:59  11:07:59 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:08:04  11:08:04 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:08:04  11:08:04 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:08:04  11:08:04 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:08:10  11:08:09 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:08:10  11:08:09 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:08:10  11:08:09 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:08:15  11:08:14 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:08:15  11:08:14 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: TRANSIENT_FAILURE!
+2023-12-21 13:08:15  11:08:14 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:08:20  11:08:19 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource redhat-operators -n openshift-marketplace -o yaml
+2023-12-21 13:08:20  11:08:20 - MainThread - ocs_ci.ocs.resources.catalog_source - INFO  - Catalog source redhat-operators is in state: READY!
+2023-12-21 13:08:20  11:08:20 - MainThread - ocs_ci.deployment.deployment - INFO  - Creating namespace and operator group.
+2023-12-21 13:08:20  11:08:20 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc create -f /home/jenkins/workspace/qe-deploy-ocs-cluster/ocs-ci/ocs_ci/templates/ocs-deployment/deploy-with-olm.yaml
+2023-12-21 13:08:20  11:08:20 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource  -n openshift-marketplace --selector=ocs-operator-internal=true -o yaml
+2023-12-21 13:08:20  11:08:20 - MainThread - ocs_ci.ocs.resources.packagemanifest - INFO  - Waiting for a resource(s) of kind packagemanifest identified by name ''
+2023-12-21 13:08:20  11:08:20 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get packagemanifest  -n openshift-marketplace --selector=ocs-operator-internal=true -o yaml
+2023-12-21 13:08:21  11:08:21 - MainThread - ocs_ci.utility.retry - WARNING  - Requested packageManifest: odf-operator with selector: ocs-operator-internal=true not found!, Retrying in 10 seconds...
+2023-12-21 13:08:31  11:08:31 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get packagemanifest  -n openshift-marketplace --selector=ocs-operator-internal=true -o yaml
+2023-12-21 13:08:37  11:08:37 - MainThread - ocs_ci.ocs.resources.packagemanifest - INFO  - package manifest odf-operator found!
+2023-12-21 13:08:37  11:08:37 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get packagemanifest  -n openshift-marketplace --selector=ocs-operator-internal=true -o yaml
+2023-12-21 13:08:43  11:08:42 - MainThread - ocs_ci.deployment.deployment - INFO  - Custom channel will be used: stable-4.15
+2023-12-21 13:08:43  11:08:42 - MainThread - ocs_ci.utility.templating - INFO  - apiVersion: operators.coreos.com/v1alpha1
+2023-12-21 13:08:43  kind: Subscription
+2023-12-21 13:08:43  metadata:
+2023-12-21 13:08:43    name: odf-operator
+2023-12-21 13:08:43    namespace: openshift-storage
+2023-12-21 13:08:43  spec:
+2023-12-21 13:08:43    channel: stable-4.15
+2023-12-21 13:08:43    name: odf-operator
+2023-12-21 13:08:43    source: redhat-operators
+2023-12-21 13:08:43    sourceNamespace: openshift-marketplace
+2023-12-21 13:08:43  
+2023-12-21 13:08:43  11:08:42 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc create -f /tmp/subscription_manifestinx7sxyw
+2023-12-21 13:08:43  11:08:42 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get Subscription  -n openshift-storage -o yaml
+2023-12-21 13:08:43  11:08:42 - MainThread - ocs_ci.deployment.deployment - INFO  - Subscription found: odf-operator
+2023-12-21 13:08:43  11:08:42 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv  -n openshift-storage -o yaml
+2023-12-21 13:08:43  11:08:43 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 10 seconds before next iteration
+2023-12-21 13:08:53  11:08:53 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv  -n openshift-storage -o yaml
+2023-12-21 13:08:53  11:08:53 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 10 seconds before next iteration
+2023-12-21 13:09:03  11:09:03 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv  -n openshift-storage -o yaml
+2023-12-21 13:09:03  11:09:03 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 10 seconds before next iteration
+2023-12-21 13:09:13  11:09:13 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv  -n openshift-storage -o yaml
+2023-12-21 13:09:13  11:09:13 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 10 seconds before next iteration
+2023-12-21 13:09:23  11:09:23 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv  -n openshift-storage -o yaml
+2023-12-21 13:09:24  11:09:23 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 10 seconds before next iteration
+2023-12-21 13:09:33  11:09:33 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv  -n openshift-storage -o yaml
+2023-12-21 13:09:40  11:09:40 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 10 seconds before next iteration
+2023-12-21 13:09:50  11:09:50 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv  -n openshift-storage -o yaml
+2023-12-21 13:09:50  11:09:50 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 10 seconds before next iteration
+2023-12-21 13:10:00  11:10:00 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv  -n openshift-storage -o yaml
+2023-12-21 13:10:00  11:10:00 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 10 seconds before next iteration
+2023-12-21 13:10:10  11:10:10 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv  -n openshift-storage -o yaml
+2023-12-21 13:10:12  11:10:11 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 10 seconds before next iteration
+2023-12-21 13:10:22  11:10:21 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv  -n openshift-storage -o yaml
+2023-12-21 13:10:23  11:10:22 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 10 seconds before next iteration
+2023-12-21 13:10:32  11:10:32 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv  -n openshift-storage -o yaml
+2023-12-21 13:10:34  11:10:34 - MainThread - ocs_ci.deployment.deployment - INFO  - CSV found: odf-operator.v4.15.0-91.stable
+2023-12-21 13:10:34  11:10:34 - MainThread - ocs_ci.deployment.deployment - INFO  - Sleeping for 30 seconds after CSV created
+2023-12-21 13:11:06  11:11:04 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get CatalogSource  -n openshift-marketplace --selector=ocs-operator-internal=true -o yaml
+2023-12-21 13:11:06  11:11:04 - MainThread - ocs_ci.ocs.resources.packagemanifest - INFO  - Waiting for a resource(s) of kind packagemanifest identified by name ''
+2023-12-21 13:11:06  11:11:04 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get packagemanifest  -n openshift-marketplace --selector=ocs-operator-internal=true -o yaml
+2023-12-21 13:11:11  11:11:10 - MainThread - ocs_ci.ocs.resources.packagemanifest - INFO  - package manifest odf-operator found!
+2023-12-21 13:11:11  11:11:10 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get packagemanifest  -n openshift-marketplace --selector=ocs-operator-internal=true -o yaml
+2023-12-21 13:11:16  11:11:16 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:11:16  11:11:16 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:11:16  11:11:16 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:11:21  11:11:21 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:11:21  11:11:21 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:11:21  11:11:21 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:11:27  11:11:26 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:11:27  11:11:27 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:11:27  11:11:27 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:11:32  11:11:32 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:11:32  11:11:32 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:11:32  11:11:32 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:11:37  11:11:37 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:11:37  11:11:37 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:11:37  11:11:37 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:11:42  11:11:42 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:11:42  11:11:42 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:11:43  11:11:42 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:11:48  11:11:47 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:11:48  11:11:48 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:11:48  11:11:48 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:11:53  11:11:53 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:11:53  11:11:53 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:11:53  11:11:53 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:11:58  11:11:58 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:11:58  11:11:58 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:11:58  11:11:58 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:12:04  11:12:03 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:12:04  11:12:04 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:12:04  11:12:04 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:12:09  11:12:09 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:12:09  11:12:09 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:12:09  11:12:09 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:12:14  11:12:14 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:12:14  11:12:14 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:12:14  11:12:14 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:12:19  11:12:19 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:12:19  11:12:19 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:12:19  11:12:19 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:12:25  11:12:24 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:12:25  11:12:25 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:12:25  11:12:25 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:12:30  11:12:30 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:12:30  11:12:30 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:12:30  11:12:30 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:12:35  11:12:35 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:12:35  11:12:35 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:12:35  11:12:35 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:12:40  11:12:40 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:12:40  11:12:40 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:12:40  11:12:40 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:12:46  11:12:45 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:12:46  11:12:46 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:12:46  11:12:46 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:12:51  11:12:51 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:12:51  11:12:51 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:12:51  11:12:51 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:12:56  11:12:56 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:12:56  11:12:56 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:12:56  11:12:56 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:13:02  11:13:01 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:13:02  11:13:01 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:13:02  11:13:01 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:13:07  11:13:06 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:13:07  11:13:07 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:13:07  11:13:07 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:13:12  11:13:12 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:13:12  11:13:12 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:13:12  11:13:12 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:13:17  11:13:17 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:13:17  11:13:17 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:13:18  11:13:17 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:13:23  11:13:22 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:13:23  11:13:23 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:13:23  11:13:23 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:13:28  11:13:28 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:13:28  11:13:28 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:13:28  11:13:28 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:13:33  11:13:33 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:13:33  11:13:33 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:13:33  11:13:33 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:13:39  11:13:38 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:13:39  11:13:38 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Installing!
+2023-12-21 13:13:39  11:13:38 - MainThread - ocs_ci.utility.utils - INFO  - Going to sleep for 5 seconds before next iteration
+2023-12-21 13:13:44  11:13:43 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:13:44  11:13:44 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-operator.v4.15.0-91.stable is in phase: Succeeded!
+2023-12-21 13:13:44  11:13:44 - MainThread - ocs_ci.ocs.resources.packagemanifest - INFO  - Waiting for a resource(s) of kind packagemanifest identified by name ''
+2023-12-21 13:13:44  11:13:44 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get packagemanifest  -n openshift-marketplace --selector=ocs-operator-internal=true -o yaml
+2023-12-21 13:13:51  11:13:49 - MainThread - ocs_ci.ocs.resources.packagemanifest - INFO  - package manifest ocs-operator found!
+2023-12-21 13:13:51  11:13:49 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get packagemanifest  -n openshift-marketplace --selector=ocs-operator-internal=true -o yaml
+2023-12-21 13:13:56  11:13:55 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv ocs-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:13:56  11:13:56 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource ocs-operator.v4.15.0-91.stable is in phase: Succeeded!
+2023-12-21 13:13:56  11:13:56 - MainThread - ocs_ci.ocs.resources.packagemanifest - INFO  - Waiting for a resource(s) of kind packagemanifest identified by name ''
+2023-12-21 13:13:56  11:13:56 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get packagemanifest  -n openshift-marketplace --selector=ocs-operator-internal=true -o yaml
+2023-12-21 13:14:03  11:14:02 - MainThread - ocs_ci.ocs.resources.packagemanifest - INFO  - package manifest mcg-operator found!
+2023-12-21 13:14:03  11:14:02 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get packagemanifest  -n openshift-marketplace --selector=ocs-operator-internal=true -o yaml
+2023-12-21 13:14:08  11:14:07 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv mcg-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:14:08  11:14:08 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource mcg-operator.v4.15.0-91.stable is in phase: Succeeded!
+2023-12-21 13:14:08  11:14:08 - MainThread - ocs_ci.ocs.resources.packagemanifest - INFO  - Waiting for a resource(s) of kind packagemanifest identified by name ''
+2023-12-21 13:14:08  11:14:08 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get packagemanifest  -n openshift-marketplace --selector=ocs-operator-internal=true -o yaml
+2023-12-21 13:14:15  11:14:13 - MainThread - ocs_ci.ocs.resources.packagemanifest - INFO  - package manifest odf-csi-addons-operator found!
+2023-12-21 13:14:15  11:14:13 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-marketplace get packagemanifest  -n openshift-marketplace --selector=ocs-operator-internal=true -o yaml
+2023-12-21 13:14:20  11:14:19 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc --kubeconfig /home/jenkins/current-cluster-dir/openshift-cluster-dir/auth/kubeconfig -n openshift-storage get csv odf-csi-addons-operator.v4.15.0-91.stable -n openshift-storage -o yaml
+2023-12-21 13:14:20  11:14:19 - MainThread - ocs_ci.ocs.ocp - INFO  - Resource odf-csi-addons-operator.v4.15.0-91.stable is in phase: Succeeded!
+2023-12-21 13:14:20  11:14:19 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc apply -f /home/jenkins/workspace/qe-deploy-ocs-cluster/ocs-ci/ocs_ci/templates/ocs-deployment/storagesystem_odf.yaml
+2023-12-21 13:14:23  11:14:23 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc create -f /home/jenkins/workspace/qe-deploy-ocs-cluster/ocs-ci/ocs_ci/templates/ocs-deployment/storageclass_thin-csi-odf.yaml
+2023-12-21 13:14:23  11:14:23 - MainThread - ocs_ci.deployment.deployment - INFO  - Flexible scaling is available from version 4.7 on LSO cluster with less than 3 zones
+2023-12-21 13:14:23  11:14:23 - MainThread - ocs_ci.utility.templating - INFO  - apiVersion: ocs.openshift.io/v1
+2023-12-21 13:14:23  kind: StorageCluster
+2023-12-21 13:14:23  metadata:
+2023-12-21 13:14:23    name: ocs-storagecluster
+2023-12-21 13:14:23    namespace: openshift-storage
+2023-12-21 13:14:23  spec:
+2023-12-21 13:14:23    resources:
+2023-12-21 13:14:23      mds:
+2023-12-21 13:14:23        Limits: null
+2023-12-21 13:14:23        Requests: null
+2023-12-21 13:14:23      mgr:
+2023-12-21 13:14:23        Limits: null
+2023-12-21 13:14:23        Requests: null
+2023-12-21 13:14:23      mon:
+2023-12-21 13:14:23        Limits: null
+2023-12-21 13:14:23        Requests: null
+2023-12-21 13:14:23      noobaa-core:
+2023-12-21 13:14:23        Limits: null
+2023-12-21 13:14:23        Requests: null
+2023-12-21 13:14:23      noobaa-db:
+2023-12-21 13:14:23        Limits: null
+2023-12-21 13:14:23        Requests: null
+2023-12-21 13:14:23      noobaa-endpoint:
+2023-12-21 13:14:23        limits:
+2023-12-21 13:14:23          cpu: 1
+2023-12-21 13:14:23          memory: 500Mi
+2023-12-21 13:14:23        requests:
+2023-12-21 13:14:23          cpu: 1
+2023-12-21 13:14:23          memory: 500Mi
+2023-12-21 13:14:23      rgw:
+2023-12-21 13:14:23        Limits: null
+2023-12-21 13:14:23        Requests: null
+2023-12-21 13:14:23    storageDeviceSets:
+2023-12-21 13:14:23    - count: 1
+2023-12-21 13:14:23      dataPVCTemplate:
+2023-12-21 13:14:23        spec:
+2023-12-21 13:14:23          accessModes:
+2023-12-21 13:14:23          - ReadWriteOnce
+2023-12-21 13:14:23          resources:
+2023-12-21 13:14:23            requests:
+2023-12-21 13:14:23              storage: 256Gi
+2023-12-21 13:14:23          storageClassName: thin-csi-odf
+2023-12-21 13:14:23          volumeMode: Block
+2023-12-21 13:14:23      name: ocs-deviceset
+2023-12-21 13:14:23      placement: {}
+2023-12-21 13:14:23      portable: true
+2023-12-21 13:14:23      replica: 3
+2023-12-21 13:14:23      resources:
+2023-12-21 13:14:23        Limits: null
+2023-12-21 13:14:23        Requests: null
+2023-12-21 13:14:23  
+2023-12-21 13:14:23  11:14:23 - MainThread - ocs_ci.utility.utils - INFO  - Executing command: oc create -f /tmp/cluster_storage7rusl9i7
