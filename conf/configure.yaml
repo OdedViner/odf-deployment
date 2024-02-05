@@ -4,4 +4,5 @@ worker_nodes:
   - compute-2
 platform: 'vsphere'
 odf_version: 'quay.io/rhceph-dev/ocs-registry:latest-stable-4.15'
+odf_channel: stable-4.15
 

@@ -46,4 +46,3 @@ def main(argv=None):
     arguments = argv or sys.argv[1:]
     conf_file_path = process_conf_files(arguments)
     load_config(conf_file_path)
-    a = 1
