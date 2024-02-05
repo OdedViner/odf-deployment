@@ -1,0 +1,7 @@
+worker_nodes:
+  - compute-0
+  - compute-1
+  - compute-2
+platform: 'vsphere'
+odf_version: 'quay.io/rhceph-dev/ocs-registry:latest-stable-4.15'
+

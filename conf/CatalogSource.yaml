@@ -11,7 +11,7 @@ spec:
   icon:
     base64data: ""
     mediatype: ""
-  image: quay.io/rhceph-dev/ocs-registry:latest-stable-4.14
+  image: quay.io/rhceph-dev/ocs-registry:latest-stable-4.15
   publisher: Red Hat
   sourceType: grpc
   priority: 100
