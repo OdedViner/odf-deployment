@@ -1,0 +1,10 @@
+.*.sw?
+.tox
+*.retry
+ansible-roles-deps
+.idea
+*.pyc
+__pycache__
+*egg*
+ven*
+.vscode
