@@ -27,12 +27,16 @@ def convert_yaml_to_dict(file_path):
 
 
 def save_dict_to_yaml(data):
-    # Create a temporary file
     with tempfile.NamedTemporaryFile(
         mode="w", delete=False, suffix=".yaml"
     ) as tmp_file:
-        # Dump the dictionary to the temporary file
         yaml.dump(data, tmp_file)
 
-    # Return the file path of the temporary file
     return tmp_file.name
+
+
+def check_count_occurrences(cmd, substring, mount):
+    output = exec_cmd(cmd)
+    string_output = output.stdout.decode("utf-8")
+    occurrences = string_output.count(substring)
+    return occurrences >= mount

@@ -3,7 +3,13 @@ import yaml
 
 
 from utils.utils import exec_cmd, TimeoutSampler
-from utils.helpers import get_parameters_yaml, verify_status
+from utils.helpers import (
+    get_parameters_yaml,
+    verify_status,
+    convert_yaml_to_dict,
+    save_dict_to_yaml,
+    check_count_occurrences,
+)
 
 
 conf = get_parameters_yaml("conf/configure.yaml")
@@ -31,16 +37,17 @@ def disable_default_source():
 
 
 def verify_machineconfigpool_status():
-    cmd = "oc get MachineConfigPool master --output=json"
-    output = exec_cmd(cmd)
-    # sample = TimeoutSampler(
-    #     timeout=100,
-    #     sleep=5,
-    #     func=check_element_text,
-    #     expected_text=capacity_str,
-    # )
-    # if not sample.wait_for_func_status(result=True):
-    #     raise TimeoutError(f"Disks are not attached after {timeout} seconds")
+    cmd = "oc get MachineConfigPool worker"
+    sample = TimeoutSampler(
+        timeout=200,
+        sleep=5,
+        func=check_count_occurrences,
+        cmd=cmd,
+        substring=f'{len(conf["worker_nodes"])}  ',
+        mount=len(conf["worker_nodes"]),
+    )
+    if not sample.wait_for_func_status(result=True):
+        raise TimeoutError(f"Disks are not attached after  seconds")
 
 
 def create_catalog_source():
@@ -64,23 +71,37 @@ def create_olm():
 
 
 def create_subscription():
-    cmd = "oc create -f conf/subsciption.yaml"
+    subscription_dict = convert_yaml_to_dict("conf/subsciption.yaml")
+    subscription_dict["spec"]["channel"] = conf["odf_channel"]
+    yaml_path = save_dict_to_yaml(subscription_dict)
+    cmd = f"oc create -f {yaml_path}"
     exec_cmd(cmd)
 
 
 def verify_csv_status():
-    cmd = "oc get csv  -n openshift-storage"
-    exec_cmd(cmd)
+    cmd = "oc get csv -n openshift-storage"
+    sample = TimeoutSampler(
+        timeout=600,
+        sleep=5,
+        func=check_count_occurrences,
+        cmd=cmd,
+        substring="Succeeded",
+        mount=4,
+    )
+    if not sample.wait_for_func_status(result=True):
+        raise TimeoutError(f"Disks are not attached after 100 seconds")
 
 
 def apply_storagesystem():
     cmd = "oc apply -f conf/storagesystem_odf.yaml"
     exec_cmd(cmd)
+    time.sleep(2)
 
 
 def create_storageclass():
     cmd = "oc create -f conf/storageclass_thin-csi-odf.yaml"
     exec_cmd(cmd)
+    time.sleep(2)
 
 
 def create_storagecluster():
@@ -91,10 +112,10 @@ def create_storagecluster():
 def run_script():
     # label_nodes()
     # disable_default_source()
-    # verify_machineconfigpool_status()
+    verify_machineconfigpool_status()
     # create_catalog_source()
     # create_olm()
-    create_subscription()
+    # create_subscription()
     # verify_csv_status()
     # apply_storagesystem()
     # create_storageclass()
