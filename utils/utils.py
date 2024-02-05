@@ -1,12 +1,15 @@
 """
 This module contains various common utility function which are used across project
 """
-import logging
 import shlex
 import subprocess
 import time
 
-log = logging.getLogger(__name__)
+
+from utils.logger_setup import setup_logger
+
+
+log = setup_logger()
 
 
 def exec_cmd(
