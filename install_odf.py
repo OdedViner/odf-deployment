@@ -26,7 +26,7 @@ def disable_default_source():
     cmd = """oc patch operatorhub.config.openshift.io/cluster -p='{"spec":{"sources":[{"disabled":true,"name":"redhat-operators"}]}}' --type=merge"""
     exec_cmd(cmd)
     time.sleep(20)
-    cmd = f"podman run --entrypoint cat quay.io/rhceph-dev/ocs-registry:latest-stable-4.15 /icsp.yaml"
+    cmd = f"podman run --entrypoint cat {conf['odf_version']} /icsp.yaml"
     icsp = exec_cmd(cmd)
     yaml_data = yaml.safe_load(icsp.stdout.decode("utf-8"))
     file_path = "/tmp/icsp.yaml"
@@ -99,9 +99,11 @@ def apply_storagesystem():
 
 
 def create_storageclass():
-    cmd = "oc create -f conf/storageclass_thin-csi-odf.yaml"
-    exec_cmd(cmd)
-    time.sleep(2)
+    if conf["platform"] == "vsphere":
+        path = "conf/storageclass_thin-csi-odf.yaml"
+        cmd = f"oc create -f {path}"
+        exec_cmd(cmd)
+        time.sleep(2)
 
 
 def create_storagecluster():
@@ -110,16 +112,16 @@ def create_storagecluster():
 
 
 def run_script():
-    # label_nodes()
-    # disable_default_source()
+    label_nodes()
+    disable_default_source()
     verify_machineconfigpool_status()
-    # create_catalog_source()
-    # create_olm()
-    # create_subscription()
-    # verify_csv_status()
-    # apply_storagesystem()
-    # create_storageclass()
-    # create_storagecluster()
+    create_catalog_source()
+    create_olm()
+    create_subscription()
+    verify_csv_status()
+    apply_storagesystem()
+    create_storageclass()
+    create_storagecluster()
 
 
 if __name__ == "__main__":
