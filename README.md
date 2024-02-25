@@ -16,5 +16,7 @@ odf_channel: odf channel e.g. 'stable-4.15'
 
 # Running the script:
 ```
+python3.10 -m venv venv
+pip install -r requirements.txt
 python install_odf.py
 ```

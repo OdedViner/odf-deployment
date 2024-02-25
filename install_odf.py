@@ -1,5 +1,6 @@
 import time
 import yaml
+import semantic_version
 
 
 from utils.utils import exec_cmd, TimeoutSampler
@@ -9,6 +10,7 @@ from utils.helpers import (
     convert_yaml_to_dict,
     save_dict_to_yaml,
     check_count_occurrences,
+    get_version,
 )
 
 
@@ -111,6 +113,18 @@ def create_storagecluster():
     exec_cmd(cmd)
 
 
+
+def crerte_tool_pod():
+    version = get_version(conf["odf_channel"])
+    if version >= semantic_version.Version.coerce("4.15"):
+        cmd = """oc patch storagecluster ocs-storagecluster -n openshift-storage --type json --patch \
+        '[{ "op": "replace", "path": "/spec/enableCephTools", "value": true }]'"""
+    else:
+        cmd = """oc patch ocsinitialization ocsinit -n openshift-storage --type json --patch \
+        '[{ "op": "replace", "path": "/spec/enableCephTools", "value": true }]'"""
+    exec_cmd(cmd)
+
+
 def run_script():
     label_nodes()
     disable_default_source()
@@ -122,6 +136,7 @@ def run_script():
     apply_storagesystem()
     create_storageclass()
     create_storagecluster()
+    crerte_tool_pod()
 
 
 if __name__ == "__main__":

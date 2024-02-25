@@ -1,5 +1,7 @@
 import yaml
 import tempfile
+import re
+import semantic_version
 
 from utils.utils import exec_cmd
 from utils.logger_setup import setup_logger
@@ -40,3 +42,9 @@ def check_count_occurrences(cmd, substring, mount):
     string_output = output.stdout.decode("utf-8")
     occurrences = string_output.count(substring)
     return occurrences >= mount
+
+
+def get_version(version_string):
+    pattern = re.compile(r'\d+\.\d+|\d+')
+    matches = pattern.findall(version_string)
+    return semantic_version.Version.coerce(matches[0])
