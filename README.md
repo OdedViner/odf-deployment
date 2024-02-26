@@ -1,6 +1,6 @@
 # odf-deployment
 
-# configure the configure.yaml 
+# configure the conf/configure.yaml 
 
 worker_nodes: list of worker nodes in cluster   
 e.g.
