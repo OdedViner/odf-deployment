@@ -67,8 +67,8 @@ def create_catalog_source():
         raise TimeoutError(f"Disks are not attached after 100 seconds")
 
 
-def create_olm():
-    cmd = "oc create -f conf/deploy_with_olm.yaml"
+def create_operator_group():
+    cmd = "oc create -f conf/operator_group.yaml"
     exec_cmd(cmd)
 
 
@@ -130,7 +130,7 @@ def run_script():
     disable_default_source()
     verify_machineconfigpool_status()
     create_catalog_source()
-    create_olm()
+    create_operator_group()
     create_subscription()
     verify_csv_status()
     apply_storagesystem()
