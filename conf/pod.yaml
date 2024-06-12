@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-test
+  namespace: namespace-test
+spec:
+  containers:
+  - image: quay.io/ocsci/nginx:fio
+    name: web-server
+    volumeMounts:
+    - mountPath: /var/lib/www/html
+      name: mypvc
+  volumes:
+  - name: mypvc
+    persistentVolumeClaim:
+      claimName: pvc-test
+      readOnly: false
