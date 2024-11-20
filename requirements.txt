@@ -1,2 +1,2 @@
-PyYAML==5.4.1
-semantic-version==2.10.0
+PyYAML
+semantic-version
