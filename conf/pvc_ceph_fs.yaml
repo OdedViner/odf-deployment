@@ -5,8 +5,8 @@ metadata:
   namespace: namespace-test
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   resources:
     requests:
-      storage: 3Gi
+      storage: 20Gi
   storageClassName: ocs-storagecluster-cephfs

@@ -53,7 +53,7 @@ def verify_machineconfigpool_status():
 
 
 def create_catalog_source():
-    cmd = "oc create -f conf/catalog_source.yaml"
+    cmd = "oc apply -f conf/catalog_source.yaml"
     exec_cmd(cmd)
     cmd = "oc -n openshift-marketplace get CatalogSource redhat-operators  -o yaml"
     sample = TimeoutSampler(
@@ -68,7 +68,7 @@ def create_catalog_source():
 
 
 def create_operator_group():
-    cmd = "oc create -f conf/operator_group.yaml"
+    cmd = "oc apply -f conf/operator_group.yaml"
     exec_cmd(cmd)
 
 
@@ -76,7 +76,7 @@ def create_subscription():
     subscription_dict = convert_yaml_to_dict("conf/subsciption.yaml")
     subscription_dict["spec"]["channel"] = conf["odf_channel"]
     yaml_path = save_dict_to_yaml(subscription_dict)
-    cmd = f"oc create -f {yaml_path}"
+    cmd = f"oc apply -f {yaml_path}"
     exec_cmd(cmd)
 
 
@@ -103,13 +103,13 @@ def apply_storagesystem():
 def create_storageclass():
     if conf["platform"] == "vsphere":
         path = "conf/storageclass_thin-csi-odf.yaml"
-        cmd = f"oc create -f {path}"
+        cmd = f"oc apply -f {path}"
         exec_cmd(cmd)
         time.sleep(2)
 
 
 def create_storagecluster():
-    cmd = "oc create -f conf/storagecluster.yaml"
+    cmd = "oc apply -f conf/storagecluster.yaml"
     exec_cmd(cmd)
 
 

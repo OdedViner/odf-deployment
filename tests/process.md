@@ -4,7 +4,7 @@ oc new-project namespace-test
 oc label namespace namespace-test security.openshift.io/scc.podSecurityLabelSync=false pod-security.kubernetes.io/enforce=baseline pod-security.kubernetes.io/warn=baseline --overwrite
 3.Create PVC:
 ```
-cat <<EOF | oc create -f -
+cat <<EOF | oc apply -f -
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -26,7 +26,7 @@ pvc-test   Bound    pvc-7adc3164-ba98-41b2-bf05-68053b1006a0   3Gi        RWO   
 
 5.Create Pod associte to `pvc-test`:
 ```
-cat <<EOF | oc create -f -
+cat <<EOF | oc apply -f -
 apiVersion: v1
 kind: Pod
 metadata:
