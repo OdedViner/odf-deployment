@@ -12,6 +12,9 @@ def create_project():
     cmd = "oc new-project namespace-test"
     exec_cmd(cmd)
     time.sleep(2)
+    cmd = "oc label namespace namespace-test security.openshift.io/scc.podSecurityLabelSync=false pod-security.kubernetes.io/enforce=baseline pod-security.kubernetes.io/warn=baseline --overwrite"
+    exec_cmd(cmd)
+    time.sleep(2)
 
 def label_name_space():
     cmd = "oc label namespace namespace-test security.openshift.io/scc.podSecurityLabelSync=false " \
