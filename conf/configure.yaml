@@ -3,7 +3,7 @@ worker_nodes:
   - compute-1
   - compute-2
 # 'ibm', 'aws' , 'vsphere'
-platform: 'vsphere'
-odf_version: 'quay.io/rhceph-dev/ocs-registry:latest-stable-4.15'
-odf_channel: 'stable-4.15'
+platform: 'ibm'
+odf_version: 'quay.io/rhceph-dev/ocs-registry:4.22.0-111.konflux'
+odf_channel: 'stable-4.22'
 

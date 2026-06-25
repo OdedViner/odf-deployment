@@ -17,8 +17,16 @@ from utils.helpers import (
 conf = get_parameters_yaml("conf/configure.yaml")
 
 
+def get_worker_nodes():
+    cmd = "oc get nodes -l node-role.kubernetes.io/worker -o jsonpath='{.items[*].metadata.name}'"
+    result = exec_cmd(cmd)
+    nodes = result.stdout.decode("utf-8").strip("'").split()
+    print(nodes)
+    return nodes
+
+
 def label_nodes():
-    nodes = conf["worker_nodes"]
+    nodes = get_worker_nodes()
     for node in nodes:
         cmd = f"oc label nodes {node} cluster.ocs.openshift.io/openshift-storage='' --overwrite"
         exec_cmd(cmd)
@@ -40,34 +48,35 @@ def disable_default_source():
 
 def verify_machineconfigpool_status():
     cmd = "oc get MachineConfigPool worker"
+    worker_count = len(conf.get("worker_nodes") or get_worker_nodes())
     sample = TimeoutSampler(
         timeout=200,
         sleep=5,
         func=check_count_occurrences,
         cmd=cmd,
-        substring=f'{len(conf["worker_nodes"])}  ',
-        mount=len(conf["worker_nodes"]),
+        substring=f'{worker_count}  ',
+        mount=worker_count,
     )
     if not sample.wait_for_func_status(result=True):
-        raise TimeoutError(f"Disks are not attached after  seconds")
+        raise TimeoutError("MachineConfigPool is not ready after 200 seconds")
 
 
 def create_catalog_source():
-    cmd = "oc apply -f conf/catalog_source.yaml"
+    catalog_dict = convert_yaml_to_dict("conf/catalog_source.yaml")
+    catalog_dict["spec"]["image"] = conf["odf_version"]
+    yaml_path = save_dict_to_yaml(catalog_dict)
+    cmd = f"oc apply -f {yaml_path}"
     exec_cmd(cmd)
     cmd = "oc -n openshift-marketplace get CatalogSource redhat-operators  -o yaml"
     sample = TimeoutSampler(
-        timeout=100,
+        timeout=150,
         sleep=5,
         func=verify_status,
         cmd=cmd,
         expected_status="lastObservedState: READY",
     )
     if not sample.wait_for_func_status(result=True):
-        raise TimeoutError(f"Disks are not attached after 100 seconds")
-
-
-def create_operator_group():
+        raise TimeoutError("CatalogSource is not ready after 150 seconds")
     cmd = "oc apply -f conf/operator_group.yaml"
     exec_cmd(cmd)
 
@@ -88,16 +97,47 @@ def verify_csv_status():
         func=check_count_occurrences,
         cmd=cmd,
         substring="Succeeded",
-        mount=4,
+        mount=13,
     )
     if not sample.wait_for_func_status(result=True):
-        raise TimeoutError(f"Disks are not attached after 100 seconds")
+        raise TimeoutError("CSV did not succeed after 600 seconds")
 
 
-def apply_storagesystem():
-    cmd = "oc apply -f conf/storagesystem_odf.yaml"
-    exec_cmd(cmd)
-    time.sleep(2)
+def apply_networkpolicy():
+    rook_base = "https://raw.githubusercontent.com/red-hat-storage/rook/master/build/csv/ceph"
+    odf_base = (
+        "https://raw.githubusercontent.com/OdedViner/odf-operator"
+        "/7791882ec1dcc2b90acc02d51f45ba1a0c9a8f00/config/networkpolicy"
+    )
+
+    urls = [
+        f"{rook_base}/networkpolicy.yaml",
+        f"{odf_base}/ceph-csi-operator/ceph-csi-operator-controller-manager-networkpolicy.yaml",
+        f"{odf_base}/ceph-csi-operator/csi-addons-controller-manager-networkpolicy.yaml",
+        f"{odf_base}/ceph-csi/cephfs-ctrlplugin-networkpolicy.yaml",
+        f"{odf_base}/ceph-csi/cephfs-nodeplugin-csi-addons-networkpolicy.yaml",
+        f"{odf_base}/ceph-csi/rbd-ctrlplugin-networkpolicy.yaml",
+        f"{odf_base}/ceph-csi/rbd-nodeplugin-csi-addons-networkpolicy.yaml",
+        f"{odf_base}/noobaa/cnpg-controller-manager-networkpolicy.yaml",
+        f"{odf_base}/noobaa/noobaa-core-networkpolicy.yaml",
+        f"{odf_base}/noobaa/noobaa-db-pg-cluster-networkpolicy.yaml",
+        f"{odf_base}/noobaa/noobaa-endpoint-networkpolicy.yaml",
+        f"{odf_base}/noobaa/noobaa-operator-networkpolicy.yaml",
+        f"{odf_base}/ocs-client-operator/ocs-client-operator-console-networkpolicy.yaml",
+        f"{odf_base}/ocs-client-operator/ocs-client-operator-controller-manager-networkpolicy.yaml",
+        f"{odf_base}/ocs-operator/ocs-metrics-exporter-networkpolicy.yaml",
+        f"{odf_base}/ocs-operator/ocs-operator-networkpolicy.yaml",
+        f"{odf_base}/ocs-operator/ocs-provider-server-networkpolicy.yaml",
+        f"{odf_base}/odf-operator/odf-blackbox-exporter-networkpolicy.yaml",
+        f"{odf_base}/odf-operator/odf-console-networkpolicy.yaml",
+        f"{odf_base}/odf-operator/odf-external-snapshotter-operator-networkpolicy.yaml",
+        f"{odf_base}/odf-operator/odf-operator-controller-manager-networkpolicy.yaml",
+        f"{odf_base}/odf-operator/ux-backend-server-networkpolicy.yaml",
+    ]
+
+    for url in urls:
+        cmd = f"oc apply -f {url}"
+        exec_cmd(cmd)
 
 
 def create_storageclass():
@@ -106,10 +146,24 @@ def create_storageclass():
         cmd = f"oc apply -f {path}"
         exec_cmd(cmd)
         time.sleep(2)
+    elif conf["platform"] == "ibm":
+        pass
 
 
 def create_storagecluster():
-    cmd = "oc apply -f conf/storagecluster.yaml"
+    platform = conf["platform"]
+    storage_class_map = {
+        "ibm": "ibmc-vpc-block-10iops-tier",
+        "vsphere": "thin-csi-odf",
+    }
+    storagecluster_dict = convert_yaml_to_dict("conf/storagecluster.yaml")
+    storage_class = storage_class_map.get(platform)
+    if storage_class:
+        storagecluster_dict["spec"]["storageDeviceSets"][0]["dataPVCTemplate"][
+            "spec"
+        ]["storageClassName"] = storage_class
+    yaml_path = save_dict_to_yaml(storagecluster_dict)
+    cmd = f"oc apply -f {yaml_path}"
     exec_cmd(cmd)
 
 
@@ -130,10 +184,10 @@ def run_script():
     disable_default_source()
     verify_machineconfigpool_status()
     create_catalog_source()
-    create_operator_group()
+    # create_operator_group()
     create_subscription()
     verify_csv_status()
-    apply_storagesystem()
+    apply_networkpolicy()
     create_storageclass()
     create_storagecluster()
     crerte_tool_pod()
